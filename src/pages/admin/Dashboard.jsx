@@ -14,8 +14,8 @@ export default function AdminDashboard() {
       try {
         const [doctorsRes, patientsRes, appsRes] = await Promise.all([
           api.get("accounts/doctors/"),
-          api.get("admin/patients/").catch(() => ({ data: { data: [] } })),
-          api.get("appointments/admin/")
+          api.get("accounts/patients/").catch(() => ({ data: { data: [] } })),
+          api.get("appointments/admin/"),
         ]);
         const doctors = doctorsRes.data.data || [];
         const patients = patientsRes.data.data || [];
@@ -23,10 +23,12 @@ export default function AdminDashboard() {
 
         const recentApps = appointments.slice(0, 5);
 
+        console.log(recentApps);
+
         setStats({
           doctors: doctors.length,
           patients: patients.length,
-          appointments: appointments.length
+          appointments: appointments.length,
         });
         setRecent(recentApps);
       } catch (err) {
@@ -45,21 +47,19 @@ export default function AdminDashboard() {
   const recentRows = recent.map((app) => ({
     id: app.id,
     patient: app.patient?.full_name || app.patient?.email,
-    doctor: app.doctor?.user?.full_name || app.doctor?.user?.email,
+    doctor: app.doctor?.full_name || app.doctor?.email,
     date: app.slot?.date,
     time: app.slot ? `${app.slot.start_time} - ${app.slot.end_time}` : "",
-    status: app.status
+    status: app.status,
   }));
 
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-xl font-semibold text-slate-900">
-          Admin Overview
-        </h1>
+        <h1 className="text-xl font-semibold text-slate-900">Admin Overview</h1>
         <p className="text-xs text-slate-500 mt-1">
-          High-level snapshot of doctors, patients, and appointments
-          across the platform.
+          High-level snapshot of doctors, patients, and appointments across the
+          platform.
         </p>
       </div>
 
@@ -100,7 +100,7 @@ export default function AdminDashboard() {
             { label: "Doctor", accessor: "doctor" },
             { label: "Date", accessor: "date" },
             { label: "Time", accessor: "time" },
-            { label: "Status", accessor: "status" }
+            { label: "Status", accessor: "status" },
           ]}
           data={recentRows}
         />

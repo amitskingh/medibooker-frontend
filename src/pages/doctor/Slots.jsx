@@ -13,7 +13,7 @@ export default function DoctorSlots() {
   const [form, setForm] = useState({
     date: "",
     start_time: "",
-    end_time: ""
+    end_time: "",
   });
   const [message, setMessage] = useState("");
 
@@ -57,9 +57,7 @@ export default function DoctorSlots() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-lg font-semibold text-slate-800">
-        Manage Slots
-      </h1>
+      <h1 className="text-lg font-semibold text-slate-800">Manage Slots</h1>
       <Card>
         <h2 className="text-sm font-semibold mb-2">Create Slot</h2>
         <form
@@ -72,9 +70,7 @@ export default function DoctorSlots() {
               type="date"
               name="date"
               value={form.date}
-              onChange={(e) =>
-                setForm((p) => ({ ...p, date: e.target.value }))
-              }
+              onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))}
               required
             />
           </div>
@@ -106,11 +102,7 @@ export default function DoctorSlots() {
             {creating ? "Creating..." : "Create Slot"}
           </Button>
         </form>
-        {message && (
-          <p className="mt-2 text-xs text-slate-600">
-            {message}
-          </p>
-        )}
+        {message && <p className="mt-2 text-xs text-slate-600">{message}</p>}
       </Card>
       <Card>
         <div className="flex items-center gap-3 mb-3">
@@ -132,20 +124,41 @@ export default function DoctorSlots() {
             {slots.map((slot) => (
               <div
                 key={slot.id}
-                className="border border-slate-200 rounded-md p-3 text-xs flex flex-col gap-1"
+                className="flex justify-between border border-slate-200 rounded-md p-4 "
               >
-                <span>
-                  Date: <strong>{slot.date}</strong>
-                </span>
-                <span>
-                  Time:{" "}
-                  <strong>
-                    {slot.start_time} - {slot.end_time}
-                  </strong>
-                </span>
-                <span>
-                  Booked: <strong>{slot.is_booked ? "Yes" : "No"}</strong>
-                </span>
+                <div className=" p-2 text-xs flex flex-col gap-1">
+                  <span>
+                    Date: <strong>{slot.date}</strong>
+                  </span>
+                  <span>
+                    Time:{" "}
+                    <strong>
+                      {slot.start_time} - {slot.end_time}
+                    </strong>
+                  </span>
+                  <span>
+                    Booked: <strong>{slot.is_booked ? "Yes" : "No"}</strong>
+                  </span>
+                </div>
+
+                <div>
+                  <Button
+                    className="text-xs px-3 py-1 bg-red-500 text-white rounded-md"
+                    onClick={async () => {
+                      if (
+                        window.confirm(
+                          "Are you sure you want to delete this slot?"
+                        )
+                      ) {
+                        await api.delete(`slots/${slot.id}/`);
+                        loadSlots();
+                      }
+                    }}
+                    disabled={slot.is_booked}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </div>
             ))}
           </div>

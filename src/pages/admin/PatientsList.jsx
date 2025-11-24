@@ -12,7 +12,7 @@ export default function PatientsList() {
     async function load() {
       setLoading(true);
       try {
-        const res = await api.get("admin/patients/");
+        const res = await api.get("accounts/patients/");
         setPatients(res.data.data || []);
       } catch (err) {
         console.error(err);
@@ -24,15 +24,13 @@ export default function PatientsList() {
   }, []);
 
   const rows = patients.map((p) => ({
-    name: p.full_name || p.email,
-    email: p.email
+    name: p.user.full_name,
+    email: p.user.email,
   }));
 
   return (
     <div className="space-y-4">
-      <h1 className="text-lg font-semibold text-slate-800">
-        Patients
-      </h1>
+      <h1 className="text-lg font-semibold text-slate-800">Patients</h1>
       <Card>
         {loading ? (
           <Loader />
@@ -40,7 +38,7 @@ export default function PatientsList() {
           <DataTable
             columns={[
               { label: "Name", accessor: "name" },
-              { label: "Email", accessor: "email" }
+              { label: "Email", accessor: "email" },
             ]}
             data={rows}
           />

@@ -42,7 +42,7 @@ export default function Login() {
         loginSuccess({
           user: data.user,
           access: data.access,
-          refresh: data.refresh
+          refresh: data.refresh,
         })
       );
       showToast("Logged in successfully!", "success");
