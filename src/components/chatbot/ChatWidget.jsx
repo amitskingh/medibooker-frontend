@@ -1,25 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
 import { sendChatMessage } from "@/api/chatApi";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
-  const [sessionId, setSessionId] = useState("");
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([
-    { sender: "bot", message: "Hello! How can I assist you today?" },
-  ]);
-
-  // Generate sessionId if not exists
-  useEffect(() => {
+  const [sessionId] = useState(() => {
     let sid = localStorage.getItem("chat_session_id");
     if (!sid) {
       sid = "session-" + Math.random().toString(36).substring(2);
       localStorage.setItem("chat_session_id", sid);
     }
-    setSessionId(sid);
-  }, []);
+    return sid;
+  });
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([
+    { sender: "bot", message: "Hello! How can I assist you today?" },
+  ]);
 
   const handleSend = async (e) => {
     e.preventDefault();

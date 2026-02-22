@@ -39,16 +39,12 @@ export default function DoctorProfile() {
           </div>
           <div>
             <span className="text-xs text-slate-500">Role</span>
-            <p className="font-medium text-slate-800 capitalize">
-              {profile?.user.role}
-            </p>
+            <p className="font-medium text-slate-800 capitalize">{profile?.user.role}</p>
           </div>
           {profile?.specialization_display && (
             <div>
               <span className="text-xs text-slate-500">Specialization</span>
-              <p className="font-medium text-slate-800">
-                {profile.specialization_display}
-              </p>
+              <p className="font-medium text-slate-800">{profile.specialization_display}</p>
             </div>
           )}
         </div>

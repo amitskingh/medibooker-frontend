@@ -28,15 +28,15 @@ import AdminProfile from "@/pages/admin/Profile";
 export const router = createBrowserRouter([
   {
     path: "/login",
-    element: <Login />
+    element: <Login />,
   },
   {
     path: "/register/patient",
-    element: <RegisterPatient />
+    element: <RegisterPatient />,
   },
   {
     path: "/register/doctor",
-    element: <RegisterDoctor />
+    element: <RegisterDoctor />,
   },
   {
     path: "/patient",
@@ -45,8 +45,8 @@ export const router = createBrowserRouter([
       { path: "dashboard", element: <PatientDashboard /> },
       { path: "book", element: <PatientBook /> },
       { path: "appointments", element: <PatientAppointments /> },
-      { path: "profile", element: <PatientProfile /> }
-    ]
+      { path: "profile", element: <PatientProfile /> },
+    ],
   },
   {
     path: "/doctor",
@@ -55,8 +55,8 @@ export const router = createBrowserRouter([
       { path: "dashboard", element: <DoctorDashboard /> },
       { path: "slots", element: <DoctorSlots /> },
       { path: "appointments", element: <DoctorAppointments /> },
-      { path: "profile", element: <DoctorProfile /> }
-    ]
+      { path: "profile", element: <DoctorProfile /> },
+    ],
   },
   {
     path: "/admin",
@@ -66,11 +66,11 @@ export const router = createBrowserRouter([
       { path: "doctors", element: <AdminDoctors /> },
       { path: "patients", element: <AdminPatients /> },
       { path: "appointments", element: <AdminAppointments /> },
-      { path: "profile", element: <AdminProfile /> }
-    ]
+      { path: "profile", element: <AdminProfile /> },
+    ],
   },
   {
     path: "*",
-    element: <Login />
-  }
+    element: <Login />,
+  },
 ]);

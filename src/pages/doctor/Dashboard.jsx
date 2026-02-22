@@ -20,12 +20,8 @@ export default function DoctorDashboard() {
         console.log(apps);
         const todayStr = new Date().toISOString().slice(0, 10);
         const todayApps = apps.filter((a) => a.slot?.date === todayStr);
-        const upcomingApps = apps.filter(
-          (a) => a.slot?.date >= todayStr && a.status !== "VISITED"
-        );
-        const uniquePatients = new Set(
-          apps.map((a) => a.patient?.id || a.patient?.email)
-        ).size;
+        const upcomingApps = apps.filter((a) => a.slot?.date >= todayStr && a.status !== "VISITED");
+        const uniquePatients = new Set(apps.map((a) => a.patient?.id || a.patient?.email)).size;
 
         setStats({
           totalAppointments: apps.length,
@@ -55,8 +51,8 @@ export default function DoctorDashboard() {
           Welcome back, Dr. {user?.first_name || "Doctor"} 👩‍⚕️
         </h1>
         <p className="text-xs text-slate-500 max-w-xl">
-          Stay on top of your schedule, manage appointment slots, and keep track
-          of your patients for the day.
+          Stay on top of your schedule, manage appointment slots, and keep track of your patients
+          for the day.
         </p>
       </div>
 
@@ -85,9 +81,7 @@ export default function DoctorDashboard() {
               <p className="text-[11px] uppercase text-slate-500 font-semibold tracking-wide">
                 Unique Patients
               </p>
-              <p className="mt-2 text-2xl font-semibold text-slate-900">
-                {stats.uniquePatients}
-              </p>
+              <p className="mt-2 text-2xl font-semibold text-slate-900">{stats.uniquePatients}</p>
             </Card>
             <Card>
               <p className="text-[11px] uppercase text-slate-500 font-semibold tracking-wide">
@@ -106,14 +100,11 @@ export default function DoctorDashboard() {
                   Manage today's availability
                 </h2>
                 <p className="text-xs text-slate-500 mb-3">
-                  Create or review slots so that patients can book appointments
-                  at times that suit your schedule.
+                  Create or review slots so that patients can book appointments at times that suit
+                  your schedule.
                 </p>
               </div>
-              <Button
-                onClick={() => navigate("/doctor/slots")}
-                className="w-fit text-xs"
-              >
+              <Button onClick={() => navigate("/doctor/slots")} className="w-fit text-xs">
                 Manage Slots
               </Button>
             </Card>
@@ -123,8 +114,7 @@ export default function DoctorDashboard() {
                   View and update appointments
                 </h2>
                 <p className="text-xs text-slate-500 mb-3">
-                  Accept, cancel, or mark appointments as completed as your day
-                  progresses.
+                  Accept, cancel, or mark appointments as completed as your day progresses.
                 </p>
               </div>
               <Button

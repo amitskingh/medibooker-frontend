@@ -25,9 +25,7 @@ export default function PatientBook() {
         const data = res.data.data || [];
         console.log(data);
         setSpecializations(
-          [{ value: "", label: "All" }].concat(
-            data.map((s) => ({ value: s.key, label: s.value }))
-          )
+          [{ value: "", label: "All" }].concat(data.map((s) => ({ value: s.key, label: s.value }))),
         );
       })
       .catch(console.error);
@@ -39,9 +37,7 @@ export default function PatientBook() {
       params.append("specialization", filters.specialization);
     }
     api
-      .get(
-        `accounts/doctors/${params.toString() ? `?${params.toString()}` : ""}`
-      )
+      .get(`accounts/doctors/${params.toString() ? `?${params.toString()}` : ""}`)
       .then((res) => {
         const data = res.data.data || [];
         setDoctors(
@@ -49,8 +45,8 @@ export default function PatientBook() {
             data.map((d) => ({
               value: d.id,
               label: d.user.full_name || d.user.email,
-            }))
-          )
+            })),
+          ),
         );
       })
       .catch(console.error);
@@ -69,9 +65,7 @@ export default function PatientBook() {
 
     console.log("DOCTORS: ", filters.doctor);
     try {
-      const res = await api.get(
-        `slots/available/?doctor=${filters.doctor}&date=${filters.date}`
-      );
+      const res = await api.get(`slots/available/?doctor=${filters.doctor}&date=${filters.date}`);
 
       setSlots(res.data.data || []);
     } catch (err) {
@@ -125,25 +119,16 @@ export default function PatientBook() {
           </div>
           <div className="space-y-1">
             <label className="text-xs text-slate-600">Date</label>
-            <Input
-              type="date"
-              name="date"
-              value={filters.date}
-              onChange={handleFilterChange}
-            />
+            <Input type="date" name="date" value={filters.date} onChange={handleFilterChange} />
           </div>
         </div>
       </Card>
       <Card>
-        <h2 className="text-sm font-semibold text-slate-800 mb-3">
-          Available Slots
-        </h2>
+        <h2 className="text-sm font-semibold text-slate-800 mb-3">Available Slots</h2>
         {loadingSlots ? (
           <Loader text="Loading slots..." />
         ) : slots.length === 0 ? (
-          <p className="text-xs text-slate-500">
-            No slots available. Please adjust your filters.
-          </p>
+          <p className="text-xs text-slate-500">No slots available. Please adjust your filters.</p>
         ) : (
           <div className="grid gap-2 md:grid-cols-3">
             {slots.map((slot) => (
@@ -160,10 +145,7 @@ export default function PatientBook() {
                     {slot.start_time} - {slot.end_time}
                   </strong>
                 </span>
-                <Button
-                  className="mt-2 text-xs"
-                  onClick={() => handleBook(slot.id)}
-                >
+                <Button className="mt-2 text-xs" onClick={() => handleBook(slot.id)}>
                   Book Slot
                 </Button>
               </div>

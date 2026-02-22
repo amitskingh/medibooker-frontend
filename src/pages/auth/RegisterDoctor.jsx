@@ -25,7 +25,7 @@ export default function RegisterDoctor() {
       .then((res) => {
         const data = res.data.data || [];
         const opts = [{ value: "", label: "Select specialization" }].concat(
-          data.map((s) => ({ value: s.key, label: s.value }))
+          data.map((s) => ({ value: s.key, label: s.value })),
         );
         setSpecializations(opts);
       })
@@ -64,20 +64,11 @@ export default function RegisterDoctor() {
             <div className="flex gap-2">
               <div className="flex-1 space-y-1">
                 <label className="text-xs text-slate-600">First Name</label>
-                <Input
-                  name="first_name"
-                  value={form.first_name}
-                  onChange={handleChange}
-                  required
-                />
+                <Input name="first_name" value={form.first_name} onChange={handleChange} required />
               </div>
               <div className="flex-1 space-y-1">
                 <label className="text-xs text-slate-600">Last Name</label>
-                <Input
-                  name="last_name"
-                  value={form.last_name}
-                  onChange={handleChange}
-                />
+                <Input name="last_name" value={form.last_name} onChange={handleChange} />
               </div>
             </div>
             <div className="space-y-1">

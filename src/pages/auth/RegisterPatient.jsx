@@ -11,7 +11,7 @@ export default function RegisterPatient() {
     last_name: "",
     email: "",
     phone_number: "",
-    password: ""
+    password: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -47,20 +47,11 @@ export default function RegisterPatient() {
             <div className="flex gap-2">
               <div className="flex-1 space-y-1">
                 <label className="text-xs text-slate-600">First Name</label>
-                <Input
-                  name="first_name"
-                  value={form.first_name}
-                  onChange={handleChange}
-                  required
-                />
+                <Input name="first_name" value={form.first_name} onChange={handleChange} required />
               </div>
               <div className="flex-1 space-y-1">
                 <label className="text-xs text-slate-600">Last Name</label>
-                <Input
-                  name="last_name"
-                  value={form.last_name}
-                  onChange={handleChange}
-                />
+                <Input name="last_name" value={form.last_name} onChange={handleChange} />
               </div>
             </div>
             <div className="space-y-1">
@@ -75,11 +66,7 @@ export default function RegisterPatient() {
             </div>
             <div className="space-y-1">
               <label className="text-xs text-slate-600">Phone Number</label>
-              <Input
-                name="phone_number"
-                value={form.phone_number}
-                onChange={handleChange}
-              />
+              <Input name="phone_number" value={form.phone_number} onChange={handleChange} />
             </div>
             <div className="space-y-1">
               <label className="text-xs text-slate-600">Password</label>

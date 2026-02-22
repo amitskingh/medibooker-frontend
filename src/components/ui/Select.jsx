@@ -8,9 +8,7 @@ export default function Select({ options = [], className = "", ...props }) {
     >
       {options.map((opt) => {
         const label =
-          typeof opt.label === "object"
-            ? JSON.stringify(opt.label)
-            : String(opt.label ?? "");
+          typeof opt.label === "object" ? JSON.stringify(opt.label) : String(opt.label ?? "");
         const value = opt.value ?? opt;
         return (
           <option key={value} value={value}>

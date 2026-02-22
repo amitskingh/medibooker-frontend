@@ -30,9 +30,7 @@ export default function AdminProfile() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-lg font-semibold text-slate-900">
-        Admin Profile
-      </h1>
+      <h1 className="text-lg font-semibold text-slate-900">Admin Profile</h1>
       <Card>
         <div className="space-y-2 text-sm">
           <div>
@@ -45,9 +43,7 @@ export default function AdminProfile() {
           </div>
           <div>
             <span className="text-xs text-slate-500">Role</span>
-            <p className="font-medium text-slate-800 capitalize">
-              {profile?.role}
-            </p>
+            <p className="font-medium text-slate-800 capitalize">{profile?.role}</p>
           </div>
         </div>
       </Card>

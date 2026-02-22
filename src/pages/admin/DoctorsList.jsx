@@ -26,14 +26,12 @@ export default function DoctorsList() {
   const rows = doctors.map((doc) => ({
     name: doc.user?.full_name || doc.user?.email,
     specialization: doc.specialization_display || doc.specialization,
-    email: doc.user?.email
+    email: doc.user?.email,
   }));
 
   return (
     <div className="space-y-4">
-      <h1 className="text-lg font-semibold text-slate-800">
-        Doctors
-      </h1>
+      <h1 className="text-lg font-semibold text-slate-800">Doctors</h1>
       <Card>
         {loading ? (
           <Loader />
@@ -42,7 +40,7 @@ export default function DoctorsList() {
             columns={[
               { label: "Name", accessor: "name" },
               { label: "Specialization", accessor: "specialization" },
-              { label: "Email", accessor: "email" }
+              { label: "Email", accessor: "email" },
             ]}
             data={rows}
           />

@@ -16,7 +16,7 @@ export default function AppointmentsList() {
       const params = new URLSearchParams();
       if (date) params.append("date", date);
       const res = await api.get(
-        `appointments/admin/${params.toString() ? `?${params.toString()}` : ""}`
+        `appointments/admin/${params.toString() ? `?${params.toString()}` : ""}`,
       );
       setAppointments(res.data.data || []);
     } catch (err) {
@@ -45,11 +45,7 @@ export default function AppointmentsList() {
       <Card>
         <div className="space-y-1">
           <label className="text-xs text-slate-600">Filter by Date</label>
-          <Input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
+          <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
       </Card>
       <Card>

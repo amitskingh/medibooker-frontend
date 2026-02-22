@@ -9,21 +9,15 @@ export default function Navbar() {
           MB
         </span>
         <div className="flex flex-col leading-tight">
-          <span className="text-sm font-semibold text-slate-800">
-            MediBooker
-          </span>
-          <span className="text-[11px] text-slate-400">
-            Appointment management dashboard
-          </span>
+          <span className="text-sm font-semibold text-slate-800">MediBooker</span>
+          <span className="text-[11px] text-slate-400">Appointment management dashboard</span>
         </div>
       </div>
       <div className="text-xs text-slate-500">
         {user ? (
           <span>
             Logged in as{" "}
-            <span className="font-medium text-slate-700">
-              {user.first_name || user.email}
-            </span>{" "}
+            <span className="font-medium text-slate-700">{user.first_name || user.email}</span>{" "}
             <span className="text-slate-400">({user.role})</span>
           </span>
         ) : (

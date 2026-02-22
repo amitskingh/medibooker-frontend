@@ -43,7 +43,7 @@ export default function Login() {
           user: data.user,
           access: data.access,
           refresh: data.refresh,
-        })
+        }),
       );
       showToast("Logged in successfully!", "success");
       const role = data.user.role;
@@ -66,12 +66,8 @@ export default function Login() {
       <div className="w-full max-w-md">
         <Card className="shadow-md">
           <div className="mb-4 text-center">
-            <h1 className="text-xl font-semibold text-slate-800">
-              Welcome to MediBooker
-            </h1>
-            <p className="text-xs text-slate-500 mt-1">
-              Sign in to manage your appointments.
-            </p>
+            <h1 className="text-xl font-semibold text-slate-800">Welcome to MediBooker</h1>
+            <p className="text-xs text-slate-500 mt-1">Sign in to manage your appointments.</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="space-y-1">
@@ -106,19 +102,13 @@ export default function Login() {
           <div className="mt-4 text-xs text-slate-500 text-center space-y-1">
             <p>
               New patient?{" "}
-              <Link
-                to="/register/patient"
-                className="text-blue-600 hover:underline"
-              >
+              <Link to="/register/patient" className="text-blue-600 hover:underline">
                 Register here
               </Link>
             </p>
             <p>
               Doctor?{" "}
-              <Link
-                to="/register/doctor"
-                className="text-blue-600 hover:underline"
-              >
+              <Link to="/register/doctor" className="text-blue-600 hover:underline">
                 Join as doctor
               </Link>
             </p>

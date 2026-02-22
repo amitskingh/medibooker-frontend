@@ -60,10 +60,7 @@ export default function DoctorSlots() {
       <h1 className="text-lg font-semibold text-slate-800">Manage Slots</h1>
       <Card>
         <h2 className="text-sm font-semibold mb-2">Create Slot</h2>
-        <form
-          onSubmit={handleCreate}
-          className="grid gap-3 md:grid-cols-4 items-end"
-        >
+        <form onSubmit={handleCreate} className="grid gap-3 md:grid-cols-4 items-end">
           <div className="space-y-1">
             <label className="text-xs text-slate-600">Date</label>
             <Input
@@ -80,9 +77,7 @@ export default function DoctorSlots() {
               type="time"
               name="start_time"
               value={form.start_time}
-              onChange={(e) =>
-                setForm((p) => ({ ...p, start_time: e.target.value }))
-              }
+              onChange={(e) => setForm((p) => ({ ...p, start_time: e.target.value }))}
               required
             />
           </div>
@@ -92,9 +87,7 @@ export default function DoctorSlots() {
               type="time"
               name="end_time"
               value={form.end_time}
-              onChange={(e) =>
-                setForm((p) => ({ ...p, end_time: e.target.value }))
-              }
+              onChange={(e) => setForm((p) => ({ ...p, end_time: e.target.value }))}
               required
             />
           </div>
@@ -108,11 +101,7 @@ export default function DoctorSlots() {
         <div className="flex items-center gap-3 mb-3">
           <div className="space-y-1">
             <label className="text-xs text-slate-600">Filter by Date</label>
-            <Input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
+            <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
           </div>
         </div>
         {loading ? (
@@ -145,11 +134,7 @@ export default function DoctorSlots() {
                   <Button
                     className="text-xs px-3 py-1 bg-red-500 text-white rounded-md"
                     onClick={async () => {
-                      if (
-                        window.confirm(
-                          "Are you sure you want to delete this slot?"
-                        )
-                      ) {
+                      if (window.confirm("Are you sure you want to delete this slot?")) {
                         await api.delete(`slots/${slot.id}/`);
                         loadSlots();
                       }

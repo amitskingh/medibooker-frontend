@@ -26,9 +26,7 @@ export default function PatientProfile() {
 
   const fullName =
     profile?.user?.full_name ||
-    `${profile?.user.first_name || ""} ${
-      profile?.user.last_name || ""
-    }`.trim() ||
+    `${profile?.user.first_name || ""} ${profile?.user.last_name || ""}`.trim() ||
     profile?.user.email;
 
   return (
@@ -46,9 +44,7 @@ export default function PatientProfile() {
           </div>
           <div>
             <span className="text-xs text-slate-500">Role</span>
-            <p className="font-medium text-slate-800 capitalize">
-              {profile?.user.role}
-            </p>
+            <p className="font-medium text-slate-800 capitalize">{profile?.user.role}</p>
           </div>
         </div>
       </Card>

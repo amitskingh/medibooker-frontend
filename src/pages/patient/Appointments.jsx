@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import api from "@/api/axios";
 import Loader from "@/components/ui/Loader";
 import Card from "@/components/ui/Card";
@@ -11,18 +11,18 @@ export default function PatientAppointments() {
   const [loading, setLoading] = useState(true);
   const { showToast } = useToast();
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const res = await api.get("appointments/patient/");
-      console.log(res.data.data);
       setAppointments(res.data.data || []);
     } catch (err) {
+      console.error(err);
       showToast("Failed loading appointments", "error");
     } finally {
       setLoading(false);
     }
-  }
+  }, [showToast]); // include dependencies used inside
 
   async function cancel(id) {
     try {
@@ -36,7 +36,7 @@ export default function PatientAppointments() {
 
   useEffect(() => {
     load();
-  }, []);
+  }, [load]);
 
   const rows = appointments.map((a) => ({
     id: a.id,
@@ -60,22 +60,22 @@ export default function PatientAppointments() {
               { label: "Date", accessor: "date" },
               { label: "Time", accessor: "time" },
               { label: "Status", accessor: "status" },
-              // {
-              //   label: "Actions",
-              //   accessor: "actions",
-              //   render: (val) => (
-              //     <div className="flex gap-2">
-              //       {val.status !== "cancelled" && (
-              //         <Button
-              //           className="text-xs bg-red-600 hover:bg-red-700"
-              //           onClick={() => cancel(val.id)}
-              //         >
-              //           Cancel
-              //         </Button>
-              //       )}
-              //     </div>
-              //   ),
-              // },
+              {
+                label: "Actions",
+                accessor: "actions",
+                render: (val) => (
+                  <div className="flex gap-2">
+                    {val.status !== "cancelled" && (
+                      <Button
+                        className="text-xs bg-red-600 hover:bg-red-700"
+                        onClick={() => cancel(val.id)}
+                      >
+                        Cancel
+                      </Button>
+                    )}
+                  </div>
+                ),
+              },
             ]}
             data={rows}
           />

@@ -1,9 +1,6 @@
 export default function ChatInput({ value, onChange, onSubmit }) {
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex items-center gap-2 p-3 border-t bg-white"
-    >
+    <form onSubmit={onSubmit} className="flex items-center gap-2 p-3 border-t bg-white">
       <input
         type="text"
         value={value}

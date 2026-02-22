@@ -14,20 +14,18 @@ export default function PatientDashboard() {
           Good day, {user?.first_name || "there"} 👋
         </h1>
         <p className="text-xs text-slate-500 max-w-xl">
-          Manage your health effortlessly. Book appointments with specialists,
-          view your upcoming visits, and keep track of your care in one place.
+          Manage your health effortlessly. Book appointments with specialists, view your upcoming
+          visits, and keep track of your care in one place.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-slate-800 mb-1">
-              Book an appointment
-            </h2>
+            <h2 className="text-sm font-semibold text-slate-800 mb-1">Book an appointment</h2>
             <p className="text-xs text-slate-500 mb-3">
-              Search by specialization, choose a doctor and pick a convenient
-              time slot that fits your schedule.
+              Search by specialization, choose a doctor and pick a convenient time slot that fits
+              your schedule.
             </p>
           </div>
           <Button onClick={() => navigate("/patient/book")} className="w-fit text-xs">
@@ -37,12 +35,10 @@ export default function PatientDashboard() {
 
         <Card className="flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-slate-800 mb-1">
-              My appointments
-            </h2>
+            <h2 className="text-sm font-semibold text-slate-800 mb-1">My appointments</h2>
             <p className="text-xs text-slate-500 mb-3">
-              See all your upcoming visits, check details, and review past
-              appointments with your doctors.
+              See all your upcoming visits, check details, and review past appointments with your
+              doctors.
             </p>
           </div>
           <Button

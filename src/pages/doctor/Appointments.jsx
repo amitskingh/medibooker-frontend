@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import api from "@/api/axios";
 import Loader from "@/components/ui/Loader";
 import Card from "@/components/ui/Card";
@@ -11,17 +11,18 @@ export default function DoctorAppointments() {
   const [loading, setLoading] = useState(true);
   const { showToast } = useToast();
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const res = await api.get("appointments/doctor/");
       setAppointments(res.data.data || []);
     } catch (err) {
+      console.error(err);
       showToast("Failed loading appointments", "error");
     } finally {
       setLoading(false);
     }
-  }
+  }, [showToast]);
 
   async function updateStatus(id, status) {
     try {
@@ -29,13 +30,14 @@ export default function DoctorAppointments() {
       showToast("Status updated", "success");
       load();
     } catch (err) {
+      console.error(err);
       showToast("Failed to update status", "error");
     }
   }
 
   useEffect(() => {
     load();
-  }, []);
+  }, [load]);
 
   const rows = appointments.map((a) => ({
     id: a.id,
@@ -65,10 +67,7 @@ export default function DoctorAppointments() {
                 render: (val) => (
                   <div className="flex gap-2">
                     {val.status === "pending" && (
-                      <Button
-                        className="text-xs"
-                        onClick={() => updateStatus(val.id, "accepted")}
-                      >
+                      <Button className="text-xs" onClick={() => updateStatus(val.id, "accepted")}>
                         Accept
                       </Button>
                     )}

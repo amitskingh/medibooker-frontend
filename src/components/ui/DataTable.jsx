@@ -5,10 +5,7 @@ export default function DataTable({ columns = [], data = [] }) {
         <thead className="bg-slate-50 border-b border-slate-200">
           <tr>
             {columns.map((col) => (
-              <th
-                key={col.accessor}
-                className="text-left px-3 py-2 font-semibold text-slate-600"
-              >
+              <th key={col.accessor} className="text-left px-3 py-2 font-semibold text-slate-600">
                 {col.label}
               </th>
             ))}
@@ -18,24 +15,16 @@ export default function DataTable({ columns = [], data = [] }) {
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td
-                colSpan={columns.length}
-                className="text-center py-6 text-slate-500"
-              >
+              <td colSpan={columns.length} className="text-center py-6 text-slate-500">
                 No data available
               </td>
             </tr>
           ) : (
             data.map((row, idx) => (
-              <tr
-                key={idx}
-                className="border-b border-slate-100 hover:bg-slate-50"
-              >
+              <tr key={idx} className="border-b border-slate-100 hover:bg-slate-50">
                 {columns.map((col) => (
                   <td key={col.accessor} className="px-3 py-2">
-                    {col.render
-                      ? col.render(row[col.accessor], row)
-                      : row[col.accessor]}
+                    {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
                   </td>
                 ))}
               </tr>

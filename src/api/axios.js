@@ -1,9 +1,10 @@
 import axios from "axios";
 import { store } from "@/store/store";
 import { logout } from "@/store/authSlice";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/v1/",
+  baseURL: API_URL,
 });
 
 // Attach token
@@ -23,7 +24,7 @@ api.interceptors.response.use(
       store.dispatch(logout());
     }
     return Promise.reject(err);
-  }
+  },
 );
 
 export default api;

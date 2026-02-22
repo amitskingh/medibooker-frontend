@@ -8,21 +8,21 @@ const navConfig = {
     { to: "/patient/dashboard", label: "Dashboard" },
     { to: "/patient/book", label: "Book Appointment" },
     { to: "/patient/appointments", label: "My Appointments" },
-    { to: "/patient/profile", label: "Profile" }
+    { to: "/patient/profile", label: "Profile" },
   ],
   doctor: [
     { to: "/doctor/dashboard", label: "Dashboard" },
     { to: "/doctor/slots", label: "Manage Slots" },
     { to: "/doctor/appointments", label: "Manage Appointments" },
-    { to: "/doctor/profile", label: "Profile" }
+    { to: "/doctor/profile", label: "Profile" },
   ],
   admin: [
     { to: "/admin/dashboard", label: "Dashboard" },
     { to: "/admin/doctors", label: "Doctors" },
     { to: "/admin/patients", label: "Patients" },
     { to: "/admin/appointments", label: "Appointments" },
-    { to: "/admin/profile", label: "Profile" }
-  ]
+    { to: "/admin/profile", label: "Profile" },
+  ],
 };
 
 export default function Sidebar({ onLogout }) {
@@ -60,17 +60,11 @@ export default function Sidebar({ onLogout }) {
               key={item.to}
               to={item.to}
               className={`flex items-center rounded-md px-3 py-2 text-xs font-medium relative overflow-hidden ${
-                active
-                  ? "bg-blue-50 text-blue-700"
-                  : "text-slate-700 hover:bg-slate-50"
+                active ? "bg-blue-50 text-blue-700" : "text-slate-700 hover:bg-slate-50"
               }`}
             >
-              {active && (
-                <span className="absolute left-0 top-0 h-full w-0.5 bg-blue-600" />
-              )}
-              <span className="truncate">
-                {collapsed ? item.label[0] : item.label}
-              </span>
+              {active && <span className="absolute left-0 top-0 h-full w-0.5 bg-blue-600" />}
+              <span className="truncate">{collapsed ? item.label[0] : item.label}</span>
             </Link>
           );
         })}
