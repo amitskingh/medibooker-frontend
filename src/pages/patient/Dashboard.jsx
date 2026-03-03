@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 export default function PatientDashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  console.log("CI/CD working");
 
   return (
     <div className="space-y-5">
