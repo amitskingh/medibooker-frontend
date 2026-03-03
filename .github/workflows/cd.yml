@@ -20,8 +20,10 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ubuntu/your-frontend-folder
-            git pull origin prod
+            cd /home/ubuntu/medibooker-frontend
+            git fetch origin
+            git checkout prod
+            git reset --hard origin/prod
             npm install
             npm run build
             sudo rm -rf /var/www/medibooker/*
