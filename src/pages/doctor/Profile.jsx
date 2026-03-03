@@ -36,7 +36,9 @@ export default function DoctorProfile() {
     if (profile) {
       const user = profile.user || {};
       const profilePic =
-        (typeof profile.profile_url === "string" ? profile.profile_url : profile.profile_url?.url) ||
+        (typeof profile.profile_url === "string"
+          ? profile.profile_url
+          : profile.profile_url?.url) ||
         (typeof user.profile_url === "string" ? user.profile_url : user.profile_url?.url) ||
         "";
       setForm({
@@ -77,7 +79,9 @@ export default function DoctorProfile() {
     if (profile) {
       const user = profile.user || {};
       const profilePic =
-        (typeof profile.profile_url === "string" ? profile.profile_url : profile.profile_url?.url) ||
+        (typeof profile.profile_url === "string"
+          ? profile.profile_url
+          : profile.profile_url?.url) ||
         (typeof user.profile_url === "string" ? user.profile_url : user.profile_url?.url) ||
         "";
       setForm({
@@ -102,7 +106,7 @@ export default function DoctorProfile() {
       if (form.profile_file) {
         payload.append("profile_url", form.profile_file, form.profile_file.name || "profile.jpg");
       }
-      
+
       const res = await api.patch("accounts/profile/", payload);
       setProfile(res.data.data);
       setEditing(false);
@@ -120,7 +124,10 @@ export default function DoctorProfile() {
       <Card>
         {/* Image Section - Always at Top */}
         <div className="flex justify-center mb-6 pb-6 border-b border-slate-200">
-          <div className="relative group cursor-pointer" onClick={editing ? triggerFileInput : undefined}>
+          <div
+            className="relative group cursor-pointer"
+            onClick={editing ? triggerFileInput : undefined}
+          >
             {form.profile_url ? (
               <img
                 src={form.profile_url}
@@ -185,7 +192,13 @@ export default function DoctorProfile() {
                 <label className="text-xs text-slate-500" htmlFor="email">
                   Email
                 </label>
-                <Input id="email" name="email" value={form.email} disabled className="bg-slate-100" />
+                <Input
+                  id="email"
+                  name="email"
+                  value={form.email}
+                  disabled
+                  className="bg-slate-100"
+                />
               </div>
               <div>
                 <label className="text-xs text-slate-500" htmlFor="role">
@@ -196,7 +209,11 @@ export default function DoctorProfile() {
             </div>
             <div className="flex gap-2 pt-2">
               <Button type="submit">Save</Button>
-              <Button type="button" className="bg-gray-500 hover:bg-gray-600" onClick={handleCancel}>
+              <Button
+                type="button"
+                className="bg-gray-500 hover:bg-gray-600"
+                onClick={handleCancel}
+              >
                 Cancel
               </Button>
             </div>
